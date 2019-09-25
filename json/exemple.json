@@ -1,0 +1,15 @@
+
+{
+"app_name":"Reperage",
+"soustitre":"La phrase simple",
+"auteur":"Patrick Cardona",
+"version":"18aout2012-16h7:25",
+"commentaire":"Dans : __C'était la fille du berger qui passait par là_, on a la forme emphatique de la phrase de base : __La fille du berger passait par là._",
+"votreConsigne":"Repérez les phrases simples.",
+"texteExercice":["Jean interpella Rousille.","C'était la fille du berger qui passait par là.","Il lui manifesta son admiration en la voyant porter sa lourde charge.","Elle répondit qu’elle était forte.","Puis elle lui demanda s’il avait vu son père.","Elle essaya de dissuader son ami de passer la nuit à chasser car son père n’aimait guère le braconnage.","Elle affirma qu’il le gronderait à ce sujet le lendemain.","Elle mit Jean en garde avec insistance : décidément, son père se méfiait de lui."],
+"solution":[0,1,2],
+"maxEssais":0,
+"jokers":0,
+"mots":8,
+"solutions":3
+}

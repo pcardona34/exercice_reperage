@@ -1,0 +1,248 @@
+/* 
+ * reperage.css
+ * 
+ * Feuille de style de l'exerciseur Reperage :  cf. reperage.html
+ * ( c ) 2012 Patrick Cardona
+ * Version : 1.2.0
+ * 
+ * @source: http://code.google.com/p/reperage/
+ * 
+ */
+ 
+/* =================================================================== */
+/* LICENCE
+/* =================================================================== */
+/*
+@licstart  The following is the entire license notice for the 
+    CSS code in this page.
+
+Copyright (C) 2012  Patrick CARDONA - Reperage
+
+    The CSS code in this page is free software: you can
+    redistribute it and/or modify it under the terms of the GNU
+    General Public License (GNU GPL) as published by the Free Software
+    Foundation, either version 3 of the License, or (at your option)
+    any later version.  The code is distributed WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+    As additional permission under GNU GPL version 3 section 7, you
+    may distribute non-source (e.g., minimized or compacted) forms of
+    that code without the copy of the GNU GPL normally required by
+    section 4, provided you include this license notice and a URL
+    through which recipients can access the Corresponding Source.
+    
+@licend  The above is the entire license notice
+    for the CSS code in this page.    
+*/
+
+
+body {
+	font-size:12pt;	
+}
+
+div#accueil{
+	position:relative;
+	margin-top:200px;
+	text-align:center;
+	padding:1em;
+	font-size:2em;
+	color:rgb(255,124,47);
+}
+
+
+/*
+ * Si id commence par 'etape'
+ */
+div[id^="etape"]{
+	/*background-color:#CCE699;*/ /* vert clair */
+	padding:2em;
+	margin-left:2em;
+	margin-right:2em;
+	border-radius: 20px;
+}
+
+h1,h2{
+	text-align:center;
+	font-family:Arial, Verdana, Helvetica, sans-serif;
+	color:#ff9900;
+}
+
+h1{
+	font-size:1.5em;
+	color:rgb(255,124,47);	/* Orange */
+}
+
+h2,h3{
+	font-size:1em;
+}
+
+div#infos_editoriales{
+	
+	padding:0.3em;
+	
+}
+
+#titre{
+	text-align: center;
+}
+
+#soustitre{
+	font-size:xx-large;
+	color: orange;
+	text-align: left;
+}
+
+#auteur{
+	color:gray;
+	text-align: right;
+}
+
+#etape0>h2,#etape1>h2,p#consigne,h3{
+	margin-left:2em;
+	text-align:left;	
+}
+
+input[type="submit"]{
+	background-color:#ffb326; /* orange foncé */
+	color:white;
+	margin:1em;
+	font-size:1em;
+	border-radius: 10px;
+    padding: 0.4em;
+}
+
+
+input[type="submit"]:hover,input[type="button"]:hover{
+	cursor:pointer;
+	background-color:#ffe673; /* orange clair */
+}
+
+#exercice{
+		background-color:white;
+		padding:0.5em;
+		border-radius: 8px;
+	    box-shadow:
+	    0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset,
+		0px 2px 2px 0px rgba(255, 255, 255, 0.5);
+		clear:both;
+}
+
+#exercice>p>span, #solution>p>span{
+	font-size:1.1em;
+}
+
+#exercice>p>span:hover{
+	cursor:pointer;
+	color:#0099CC;
+	text-decoration:underline;	
+}
+
+#solution,#votreconsigne{
+		border:solid #ffcc4d 1px;
+		padding:0.2em;
+		border-radius: 5px;
+		clear:both;
+}
+
+
+.nozoom>p{
+	font-size:1em;
+}
+
+.zoom>p{
+	font-size:1.5em;
+}
+
+
+#bloc{
+	margin-top:5em;
+	text-align:center;
+}
+
+#entrer{
+	font-size:2em;	
+}
+
+
+#action1{
+	/*display:none;*/	
+}
+
+#pied {
+	font-size:0.8em;
+	text-align:center;
+	color:gray;	
+}
+
+a, a:visited{
+	color:#008000;
+}
+
+#pied a,#pied a:visited{
+	font-size:1em;
+	color:gray;	
+}
+
+#pied a:hover,a:hover{
+	color:#FF0000;
+}
+
+
+
+.juste{
+	color:#3c9;	
+}
+
+.faux{
+	color:red;	
+}
+
+.score{
+	color:blue;	
+}
+
+.correction{
+	color:orange;	
+}
+
+#clics{
+	text-align:center;
+	color:orange;	
+}
+
+em {
+	color:rgb(0,127,0);
+	font-size:1em;
+}
+
+legend{
+	font-size: 0.8em;
+	color: gray;
+}
+
+
+
+fieldset {
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#succes {
+	position:fixed;
+	z-index:10;
+	top:30px;
+	right:30px;
+	
+}
+
+#echec {
+	position:fixed;
+	z-index:11;
+	top:30px;
+	right:30px;
+}
+
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+    <meta name="author" content="Patrick CARDONA" />
+    <meta name="copyright" content="Patrick CARDONA" />
+    <meta name="generator" content="Reperage 2.1" />
+    <title>Exercice de Repérage</title>
+    
+    
+    <!-- Feuilles de style partagées -->
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="public/css/zebra_dialog.css" />
+    <link rel="stylesheet" type="text/css" href="lib/css/apropos.css" />
+    <link rel="stylesheet" type="text/css" href="css/degrade.css" />
+    
+    
+    
+    <!-- Feuilles de style liées à cette page -->
+    <link rel="stylesheet" type="text/css" href="css/reperage.css" />
+    
+    
+    
+
+  </head>
+    <body>
+    
+    <!-- Ne modifiez rien ici !!! Utilisez le générateur de données generateur.html ! -->
+    
+	
+	
+	
+
+	
+		
+	<!-- Infos éditoriales -->
+	
+	
+	
+	<div id="une">
+		<div id="titre"><img src="img/reperage-mini.png" alt="logo Reperage" /></div>
+	    <div id="infos_editoriales">
+	    	<span id="soustitre">Ici votre sous-titre</span>
+		</div>
+	</div>
+  	
+  	<div id="bloc">
+			<!-- Zone cachée mais nécessaire à l'exécution  -->
+			<form>
+	    		<input type="submit" value="Afficher la consigne" id="entrer" />
+	    	</form>
+    </div>
+    		
+  	<div id="accordeons">
+    		
+    	<h3>Consigne</h3>
+    	<div class="degrade">
+			<!-- Consigne -->    
+   			
+				<div id="votreconsigne" class="nozoom">La consigne</div>
+			
+		</div>
+    	
+    	<h3>Exercice</h3>
+    	<div class="degrade">
+			<!-- Corps de l'exercice -->    
+   			<div id="etape1"> 
+				<div id="clics"> </div>
+    		
+				<div id="exercice" class="nozoom">Corps de l'exercice</div>
+    
+				<form>
+					<input type="submit" value="Commencer l'exercice" id="action0" /> 
+					<input type="submit" value="Voir la solution" id="action1" />
+					
+				</form>
+   
+   		</div>
+   
+   		<!-- Solution -->    
+   		<div id="etape2">
+    		<h2>Solution de l'exercice</h2>
+    	
+    		<div id="solution" class="nozoom">La solution</div>
+    		<div id="commentaire" class="nozoom">Le commentaire</div>
+   
+   		</div>
+		</div>
+    		
+    	<h3>Options</h3>
+    	<div class="degrade">
+	    
+   		
+   		
+    		
+    		<!-- Etape 0 -->
+    		<div id="etape0">
+    	
+    		<div id="msg_initial"> </div>
+    	
+    		<form>
+    		<fieldset>
+    			<legend>Option d'affichage : </legend>
+    		
+    			<input type="checkbox" id="zoom1" />&nbsp; Adapter l'affichage pour un vidéo-projecteur.
+    		</fieldset>
+    		</form>
+    		</div>
+	</div>
+    <h3>À propos &hellip;</h3>
+    	<div class="degrade">
+    		<p><b>Titre de l'exercice : </b><span id="titre_exo"> </span></p>
+    		<p><b>Auteur de l'exercice : </b><span id="auteur_exo"> </span></p>
+    		<p><b>Licence : </b>Creative Commons By-Nc</p>
+    		
+    	</div>		
+    	
+	
+		
+	</div> <!-- Fin accordéons -->
+  
+    
+  <!-- Pied de page -->
+  <div id="pied">
+  Créé au moyen de <a href="#" title="apropos">Repérage</a> : © Patrick Cardona 
+  &nbsp; | <a href="#" title="licence" rel="jslicense">Licence</a>
+  </div>
+  
+  <div id="succes">
+  	<img src="img/face-smile.png" alt="Bravo !" width="128" height="128" />
+  </div>
+  
+  <div id="echec">
+  	<img src="img/face-sad.png" alt="Bravo !" width="128" height="128" />
+  </div>
+  
+  <!-- Lib JavaScript partagées -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="public/js/zebra_dialog.js"></script>
+    
+    
+    <!-- Scripts partagés -->
+    <script src="lib/js/apropos.js"></script>
+    <script src="lib/js/lic.js"></script>
+    
+    
+    <!-- Scripts liés à cette page -->
+	<script src="js/parametres.js"></script>
+	<script src="js/reperage.js"></script>
+    <script src="js/interface.js"></script>
+  
+  </body>
+</html>

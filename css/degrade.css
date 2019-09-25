@@ -1,0 +1,35 @@
+.degrade {
+	/* Anciens navigateurs */
+	background: aliceblue url("gradient-bg.png") repeat-x top;
+	-o-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	/* Navigateurs récents */
+	background: -webkit-gradient(
+		linear,
+		left top, left bottom,
+		from(khaki),
+		to(aliceblue)
+	);
+	background: -webkit-linear-gradient(
+		top,
+		khaki,
+		aliceblue
+	);
+	background: -moz-linear-gradient(
+		top,
+		khaki,
+		aliceblue
+	);
+	background: -o-linear-gradient(
+		top,
+		khaki,
+		aliceblue
+	);
+	background: linear-gradient(
+		top,
+		khaki,
+		aliceblue
+	);
+}
