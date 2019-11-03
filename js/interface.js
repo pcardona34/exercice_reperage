@@ -1,22 +1,22 @@
-/* 
+/*
  * interface.js
- * 
- * Reperage : interface de l'exercice de repérage 
- * ( c ) 2012 - Patrick Cardona
- * Version : 2.0
- * 
- * @source: http://code.google.com/p/reperage/
- * 
+ *
+ * Reperage : interface de l'exercice de repérage
+ * ( c ) 2012-2019 - Patrick Cardona
+ * Version : 3.0.0
+ *
+ * @source: sur Github...
+ *
  */
 
 /* =================================================================== */
-/* LICENCE
+/* LICENCE															   */
 /* =================================================================== */
 /*
-@licstart  The following is the entire license notice for the 
+@licstart  The following is the entire license notice for the
     JavaScript code in this page.
 
-Copyright (C) 2012  Patrick CARDONA - Reperage
+Copyright (C) 2012-2019  Patrick CARDONA - Reperage
 
     The JavaScript code in this page is free software: you can
     redistribute it and/or modify it under the terms of the GNU
@@ -31,17 +31,47 @@ Copyright (C) 2012  Patrick CARDONA - Reperage
     that code without the copy of the GNU GPL normally required by
     section 4, provided you include this license notice and a URL
     through which recipients can access the Corresponding Source.
-    
+
 @licend  The above is the entire license notice
-    for the JavaScript code in this page.    
+    for the JavaScript code in this page. 
 */
 
 
-/* *************************************************************************************** */
-/* Gestionnaire de l'Interface utilisateur au moyen de gestionnaires d'événements JQuery   */
-/* *************************************************************************************** */
+/* **************************************************************** */
+/* Fonctions de gestion de l'affichage des accordéons               */
+/* **************************************************************** */
 
-$("document").ready(function(){
+function montreAccordeon(id){
+	
+	/* On replie tous les accordéons */
+	let accordeons = document.querySelectorAll('.degrade');
+	for ( let i = 0; i < accordeons.length; i++ ){
+		let ida = accordeons[i].getAttribute('id');
+		cacherAccordeon(ida);
+	}
+	/* On remet les titres en gris */
+	let titres = document.querySelectorAll('h3');
+	for ( let i = 0; i < titres.length; i++){
+		titres[i].style.color = 'gray';
+	}
+	
+	/* On affiche celui qui a été sélectionné */
+	document.getElementById(id).style.display = 'block';
+}
+
+function cacherAccordeon(id){
+	
+	document.getElementById(id).style.display = 'none';
+	
+}
+
+/* ******************************************************************/
+/* Gestionnaire de l'Interface utilisateur  						*/
+/* ******************************************************************/
+
+/* Dès que la page est chargée...*/
+
+document.addEventListener("DOMContentLoaded", function(){
 
 // On crée une instance de l'objet Consigne :
 var cons = new objConsigne(soustitreDef, auteurDef, votreConsigneDef, commentaireDef);
@@ -49,22 +79,21 @@ var cons = new objConsigne(soustitreDef, auteurDef, votreConsigneDef, commentair
 var exo = new objExercice(essaisDef, maxEssaisDef, justesDef, reponsesDef, motsDef, solutionsDef, optionMotDef, ExerciceDef, texteExerciceDef, solutionDef, finConsigneDef, couleurDef, jokersDef);
 
 // On initialise le facteur de zoom
-$("#zoom1").attr("checked",false);
+document.getElementById("zoom1").checked = false;
 
 // On masque les zones de bilan :
-$("#succes").hide();
-$("#echec").hide();
+document.getElementById("succes").style.display = 'none';
+document.getElementById("echec").style.display = 'none';
 
-/*
-	 * Lien licence
-	 */
-	$("a[title='licence']").click(function(e){
-		var msg = lic; 
-		$.Zebra_Dialog(msg, {'title':"Licence",'width':'600'});
+
+/* Liens licence et à propos */
+	document.querySelector("a[title='licence']").addEventListener('click', function(e){
+		let msg = lic; 
+		alert (msg);
 		e.preventDefault();
 	});
-	
-	$("a[title=apropos]").click(function(e){
+
+	document.querySelector("a[title=apropos]").addEventListener('click', function(e){
 		apropos.affiche();
 		e.preventDefault(); // Pour ne pas suivre le lien.
 	});
@@ -72,50 +101,85 @@ $("#echec").hide();
     /*
     * Gestion des tiroirs
     */
-    $("#accordeons").accordion({ fillSpace: true });
+    var accordeons = document.querySelectorAll('.degrade');
+    for ( let i = 0 ; i < accordeons.length ; i++ ){
+			accordeons[i].style.display = 'none';
+	}
+	
+	var titres = document.querySelectorAll('h3');
+	for ( let i = 0; i < titres.length; i++){
+		titres[i].addEventListener('click', function(){
+			let tiroirs = document.querySelectorAll('.degrade');
+			montreAccordeon(tiroirs[i].getAttribute('id'));
+			titres[i].style.color = 'black';
+	});
+	} // Fin de la boucle for sur les titres
+	
+// Appel effectif de la fonction du chargement des données
+// On récupère les données au format JSON
 
-// On charge les données de cet exercice
-$.getJSON('data.json', function(data) {
-	cons.initialise(data.soustitre, data.auteur, data.votreConsigne, data.commentaire);
-  	exo.initialise(parseInt(data.maxEssais), parseInt(data.mots), parseInt(data.solutions), data.optionMot, data.texteExercice, data.solution, parseInt(data.jokers));
-
-	// On affiche la consigne et l'option zoom :
-    $("#bloc").hide();
+	fetch(donnees)
+	.then(function(response) {
+	if (!response.ok) {
+		throw new Error("HTTP error, status = " + response.status);
+       }
+       return response.json();
+     })
+     .then(function(json) {
+	cons.initialise(json.soustitre, json.auteur, json.votreConsigne, json.commentaire);
+  	exo.initialise(parseInt(json.maxEssais), parseInt(json.mots), parseInt(json.solutions), json.optionMot, json.texteExercice, json.solution, parseInt(json.jokers));
+	// On affiche la consigne :
     cons.afficherUne();
-    
+
 	// On prépare l'exercice dans sa zone
-    $("#action0").click();
-});
-
-
-
+	exo.prepare();
+	document.getElementById("exercice").innerHTML = exo.Exercice;
+	// On masque le bouton recommencer
+	document.getElementById('action2').style.display = 'none';
+   });
 
 	
+/* ***************************************************** */
+/* Gestion du zoom */
+/* ***************************************************** */
+
+// Option d'affichage du texte : zoom pour travailler sur un vidéo-projecteur
+ 	document.getElementById("zoom1").addEventListener('click',function(){
+
+ 		if (this.checked == true){
+			var optionZoom = true;
+		}
+		else{
+			var optionZoom = false;
+		}
+
+		if (optionZoom == true){
+			document.getElementById('exercice').style.fontSize = '1.5em';
+			document.getElementById("une").style.display = 'none';
+ 		}
+ 		else{
+ 			document.getElementById('exercice').style.fontSize = '1em';
+ 			document.getElementById("une").style.display = 'block';
+ 		}
+ 	});
+
 	/* ======================================================= */
 	/* Evénement 0 : présentation et consigne...			   */
 	/* ======================================================= */
-	
-	
+
   /* ----------------------------- */
-  $("input:submit").click(function(){
-	// On récupère le libellé du bouton cliqué.
-	var monAction = $(this).val();
-	// On va gérer les événements en fonction du libellé du bouton cliqué :
-	
-	switch ( monAction ){
-	
-	/* ----------------------------- */	
-	case "Commencer l'exercice":
+  document.getElementById("action0").addEventListener('click', function(e){
+	/* ----------------------------- */
+	/* Commencer l'exercice */
 		// On masque les zones de bilan :
-		$("#succes").hide();
-		$("#echec").hide();
-		
+		document.getElementById("succes").style.display = 'none';
+		document.getElementById("echec").style.display = 'none';
+
 		exo.prepare(); // On (ré)initialise certaines variables de l'exercice
-		$(this).hide(); // On cache le bouton cliqué.
-	 	$("div#etape2").hide();
-	 	$("#action1").hide();
-	    	
-		
+		this.style.display = 'none'; // On cache le bouton cliqué.
+	 	document.getElementById("etape2").style.display = 'none';
+	 	document.getElementById("action1").style.display = 'none';
+
 		// info sur la tolérance des erreurs dans le calcul du score :
 		switch(exo.jokers){
 		case 0:
@@ -142,8 +206,8 @@ $.getJSON('data.json', function(data) {
 			var infoEssais = "<br />Vous pourrez exécuter cet exercice autant de fois que nécessaire.";
 		}
 		var msginitial = infoErreurs + infoEssais;
-		$("#msg_initial").html("<p>"+ msginitial + "</p>");
-		
+		document.getElementById("msg_initial").innerHTML = "<p>"+ msginitial + "</p>";
+
 		// Le nombre initial de clics permis :
 		if (exo.clics < 2){
 			var infoclic = exo.clics + " clic restant.";
@@ -151,45 +215,46 @@ $.getJSON('data.json', function(data) {
 		else{
 			var infoclic = exo.clics + " clics restants.";
 		}
-		$("#clics").html(infoclic);
+		document.getElementById("clics").innerHTML = infoclic;
 		// Si on clique sur le lien 'consigne' :
-		
-		/* ---------------------------------------- */		
-		// Texte de l'exercice
-		$("#exercice").html(exo.Exercice);
-		
-		
+
 		/* ---------------------------------------- */
-		// Option d'affichage du texte : zoom pour travailler sur un vidéo-projecteur
- 		// Par défaut, on a hérité le zoom de celui de la consigne.
- 		
- 		/* ---------------------------------------- */
+		// Texte de l'exercice
+		//document.getElementById("exercice").innerHTML = exo.Exercice;
+
+
+		/* ---------------------------------------- */
  		// On gère l'événement : Si on clique sur une unité du texte.
- 		$("#exercice>p>span").click(function(){
+
+ 		//document.querySelectorAll("#exercice > p > span").addEventListener('click', repere(){
+
+		for ( let i = 0 ;  i < exo.mots ; i++ ){
+		document.getElementById(i).addEventListener('click', function(){
 		// On récupère l'id de cette unité :
- 			var id = $(this).attr("id");
+			
+ 			var id = this.getAttribute('id');
 			// Traitement des données : est-ce une bonne réponse, score, etc.
 			var couleur = exo.cliquerSurUnite(id);
 			// On modifie l'aspect de l'unité :
-			$(this).css("color", couleur);
+			this.style.color = couleur;
 		});
-		
-		
-		
-					
- 	break;
- 	
- 	case "Recommencer":
+		} // fin boucle for
+	e.preventDefault();
+ 	});
+
+/* Recommencer */
+ 	document.getElementById("action2").addEventListener('click', function(e){
+	
 		// On masque les zones de bilan :
-		$("#succes").hide();
-		$("#echec").hide();
-		
+		document.getElementById("succes").style.display = 'none';
+		document.getElementById("echec").style.display = 'none';
+
 		exo.prepare(); // On (ré)initialise certaines variables de l'exercice
-		$(this).hide(); // On cache le bouton cliqué.
-	 	$("div#etape2").hide();
-	 	$("#action1").hide();
-	    	
-		
+		this.style.display = 'none'; // On cache le bouton cliqué.
+	 	document.getElementById("etape2").style.display = 'none';
+	 	document.getElementById("action1").style.display = 'none';
+
+
 		// info sur la tolérance des erreurs dans le calcul du score :
 		switch(exo.jokers){
 		case 0:
@@ -216,8 +281,8 @@ $.getJSON('data.json', function(data) {
 			var infoEssais = "<br />Vous pourrez exécuter cet exercice autant de fois que nécessaire.";
 		}
 		var msginitial = infoErreurs + infoEssais;
-		$("#msg_initial").html("<p>"+ msginitial + "</p>");
-		
+		document.getElementById("msg_initial").innerHTML = "<p>"+ msginitial + "</p>";
+
 		// Le nombre initial de clics permis :
 		if (exo.clics < 2){
 			var infoclic = exo.clics + " clic restant.";
@@ -225,61 +290,45 @@ $.getJSON('data.json', function(data) {
 		else{
 			var infoclic = exo.clics + " clics restants.";
 		}
-		$("#clics").html(infoclic);
-		
-		
-		/* ---------------------------------------- */		
+		document.getElementById("clics").innerHTML = infoclic;
+
+
+		/* ---------------------------------------- */
 		// Texte de l'exercice
-		$("#exercice").html(exo.Exercice);
-		
-		
+		document.getElementById("exercice").innerHTML = exo.Exercice;
+
+
 		/* ---------------------------------------- */
 		// Option d'affichage du texte : zoom pour travailler sur un vidéo-projecteur
  		// Par défaut, on a hérité le zoom de celui de la consigne.
- 		
+
  		/* ---------------------------------------- */
  		// On gère l'événement : Si on clique sur une unité du texte.
- 		$("#exercice>p>span").click(function(){
+		for ( let i = 0 ; i < exo.mots ; i++ ){
+		document.getElementById(i).addEventListener('click', function(){
 		// On récupère l'id de cette unité :
- 			var id = $(this).attr("id");
+ 			var id = this.getAttribute('id');
 			// Traitement des données : est-ce une bonne réponse, score, etc.
 			var couleur = exo.cliquerSurUnite(id);
 			// On modifie l'aspect de l'unité :
-			$(this).css("color", couleur);
-		});
-		
-		
- 	break;
- 	
- 	/* ----------------------------- */	
- 	case "Voir la solution":
+			this.style.color = couleur;
+			});
+		}
+		e.preventDefault(); // On empêche le bouton de recharger la page sans les paramètres...
+ 	});
+
+ 	/* ----------------------------- */
+ 	document.getElementById("action1").addEventListener('click', function(e){
+	/* Voir la solution */
  		// On prépare l'affichage de la solution qui héritera du zoom...
 		exo.corrige();
 		cons.afficherCommentaire();
- 		$("div#etape2").show();
-		$("div#etape1").hide();
-		
+ 		document.getElementById("etape2").style.display = 'block';
+		document.getElementById("etape1").style.display = 'none';
+		e.preventDefault();
+	});
 
-	break;
-	
-	/* ----------------------------- */
-	case "Afficher la consigne":
-		cons.afficherUne();
-		
-		$("#bloc").hide();
-	break;
-	
-	/* ----------------------------- */
-	default:
-		alert('Cet événement n\'est pas géré...');
-		
-	break;	
-	/* ----------------------------- */				
-	}// fin du switch
-		
-	/* ----------------------------- */
-	return false;
-	}); // Fin du gestionnaire d'événement : clique sur un bouton...
-/* ----------------------------- */			
-}); // Fin de la fonction .ready()
+
+/* ----------------------------- */
+}); /*Fin de la fonction principale */
 

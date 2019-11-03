@@ -10,14 +10,7 @@
     
     
     <!-- Feuilles de style partagées -->
-	
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <!--<link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />-->
-    <link rel="stylesheet" type="text/css" href="public/css/zebra_dialog.css" />
-    <link rel="stylesheet" type="text/css" href="lib/css/apropos.css" />
     <link rel="stylesheet" type="text/css" href="css/degrade.css" />
-    
-    
     
     <!-- Feuilles de style liées à cette page -->
     <link rel="stylesheet" type="text/css" href="css/reperage.css" />
@@ -29,10 +22,6 @@
     <!-- Ne modifiez rien ici !!! Utilisez le générateur de données generateur.html ! -->
     
 	
-	
-	
-
-	
 		
 	<!-- Infos éditoriales -->
 	
@@ -41,39 +30,34 @@
 	<div id="une">
 		<div id="titre"><img src="img/reperage-mini.png" alt="logo Reperage" /></div>
 	    <div id="infos_editoriales">
-	    	<span id="soustitre">Ici votre sous-titre</span>
+	    	<div id="soustitre">Ici votre sous-titre</div>
 		</div>
 	</div>
   	
-  	<div id="bloc">
-			<!-- Zone cachée mais nécessaire à l'exécution  -->
-			<form>
-	    		<input type="submit" value="Afficher la consigne" id="entrer" />
-	    	</form>
-    </div>
+  	
     		
   	<div id="accordeons">
     		
-    	<h3>Consigne</h3>
-    	<div class="degrade">
+    	<h3 id="titre_consigne">Consigne</h3>
+    	<div id="zone_consigne" class="degrade">
 			<!-- Consigne -->    
    			
-				<div id="votreconsigne" class="nozoom">La consigne</div>
+				<div id="votreconsigne" class="zoom">La consigne</div>
 			
 		</div>
     	
-    	<h3>Exercice</h3>
-    	<div class="degrade">
+    	<h3 id="titre_exercice">Exercice</h3>
+    	<div id="zone_exercice" class="degrade">
 			<!-- Corps de l'exercice -->    
    			<div id="etape1"> 
 				<div id="clics"> </div>
     		
-				<div id="exercice" class="nozoom">Corps de l'exercice</div>
+				<div id="exercice" class="zoom">Corps de l'exercice</div>
     
 				<form>
-					<input type="submit" value="Commencer l'exercice" id="action0" /> 
-					<input type="submit" value="Voir la solution" id="action1" />
-					
+					<button id="action0">Commencer l'exercice</button> 
+					<button id="action1">Voir la solution</button>
+					<button id="action2" class="bad">Recommencer</button>
 				</form>
    
    		</div>
@@ -82,14 +66,14 @@
    		<div id="etape2">
     		<h2>Solution de l'exercice</h2>
     	
-    		<div id="solution" class="nozoom">La solution</div>
-    		<div id="commentaire" class="nozoom">Le commentaire</div>
+    		<div id="solution" class="zoom">La solution</div>
+    		<div id="commentaire" class="zoom">Le commentaire</div>
    
    		</div>
 		</div>
     		
-    	<h3>Options</h3>
-    	<div class="degrade">
+    	<h3 id="titre_options">Options</h3>
+    	<div id="zone_options" class="degrade">
 	    
    		
    		
@@ -108,8 +92,8 @@
     		</form>
     		</div>
 	</div>
-    <h3>À propos &hellip;</h3>
-    	<div class="degrade">
+    <h3 id="titre_apropos">À propos &hellip;</h3>
+    	<div id="zone_apropos" class="degrade">
     		<p><b>Titre de l'exercice : </b><span id="titre_exo"> </span></p>
     		<p><b>Auteur de l'exercice : </b><span id="auteur_exo"> </span></p>
     		<p><b>Licence : </b>Creative Commons By-Nc</p>
@@ -135,13 +119,6 @@
   	<img src="img/face-sad.png" alt="Bravo !" width="128" height="128" />
   </div>
   
-  <!-- Lib JavaScript partagées -->
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="public/js/zebra_dialog.js"></script>
-    
-    
     <!-- Scripts partagés -->
     <script src="lib/js/apropos.js"></script>
     <script src="lib/js/lic.js"></script>
@@ -152,5 +129,5 @@
 	<script src="js/reperage.js"></script>
 	<script src="js/interface.js"></script>
   
-  </body>
+</body>
 </html>

@@ -1,22 +1,22 @@
-/* 
+/*
  * reperage.js
- * 
+ *
  * Scripts de l'exerciseur de Reperage
- * (c) 2012 - Patrick Cardona
- * Reperage : version : 2.0
- * 
+ * (c) 2012-2019 - Patrick Cardona
+ * Exercice de Reperage : version : 3.0.0
+ *
  * @source: http://code.google.com/p/reperage/
- * 
- */ 
+ *
+ */
 
 /* =================================================================== */
 /* LICENCE
 /* =================================================================== */
 /*
-@licstart  The following is the entire license notice for the 
+@licstart  The following is the entire license notice for the
     JavaScript code in this page.
 
-Copyright (C) 2012  Patrick CARDONA - Reperage
+Copyright (C) 2012-2019  Patrick CARDONA - Exercice de Reperage
 
     The JavaScript code in this page is free software: you can
     redistribute it and/or modify it under the terms of the GNU
@@ -31,17 +31,17 @@ Copyright (C) 2012  Patrick CARDONA - Reperage
     that code without the copy of the GNU GPL normally required by
     section 4, provided you include this license notice and a URL
     through which recipients can access the Corresponding Source.
-    
+
 @licend  The above is the entire license notice
-    for the JavaScript code in this page.    
+    for the JavaScript code in this page.
 */
 /* =================================================================== */
 /* !!!!!!!!!!!!!!!! AVERTISSEMENT  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* =================================================================== */
-/* 
+/*
 	!!! IMPORTANT !!! Ne touchez pas à ce fichier à moins de posséder de solides
-	connaissances en javascript, DOM et JQuery ! 
-	
+	connaissances en javascript, DOM... !
+
 	Pour générer les données de l'exercice,
 	utilisez le Générateur de Repérage : generateur.html !!!
 */
@@ -54,7 +54,7 @@ Copyright (C) 2012  Patrick CARDONA - Reperage
 /* Elles sont chargées grâce à l'objet 'data' au format JSON.
 	Cet objet est défini dans le fichier de données 'data.json',
 	dont le contenu est créé au moyen du Générateur.
-*/ 
+*/
 
 /* **************************************************** */
 /* 	METHODES ET FONCTIONS...								*/
@@ -65,29 +65,29 @@ Copyright (C) 2012  Patrick CARDONA - Reperage
 /*	Etend les méthodes natives de l'objet Array grâce à la méthode prototype   */
 /* **************************************************************************  */
 
-Array.prototype.contient = function (valeur) { 
+Array.prototype.contient = function (valeur) {
 	if(this.length > 0){
 		for(var i=0 ; i < this.length ; i++){
 			if(this[i] == valeur){
-				return i;	
-			}	
-		}		
+				return i;
+			}
+		}
 	}
 return -1;	// Sinon : valeur retournée impossible pour un indice
 }
 
 // Supprimer des espaces au début ou à la fin
-function trim (myString) 
-{ 
+function trim (myString)
+{
 return myString.replace(/^\s+/g,'').replace(/\s+$/g,'');
-} 
+}
 /* ****************************************************************** */
-/* Fonctions secondaires de gestion de l'interface					 */
+/* Fonctions secondaires de gestion de l'interface		      */
 /* ****************************************************************** */
 
-/* ****************************************************************** */	
-/* 	Affichage de la consigne générale                                 */
-/*  On doit créer une instance de l'objet Consigne   				  */
+/* ****************************************************************** */
+/* 	Affichage de la consigne générale                             */
+/*  On doit créer une instance de l'objet Consigne   		      */
 /* ****************************************************************** */
 
 // Constructeur de l'objet Consigne
@@ -100,7 +100,7 @@ function objConsigne(_soustitre, _auteur, _votreConsigne, _commentaire){
 	this.zoom = false;
 	this.commentaire = _commentaire;
 }
-		
+
 	/* ----------------------------- */
 
 objConsigne.prototype.initialise = function(_soustitre, _auteur, _votreConsigne, _commentaire){
@@ -108,57 +108,36 @@ objConsigne.prototype.initialise = function(_soustitre, _auteur, _votreConsigne,
 	this.soustitre = _soustitre;
 	this.auteur = _auteur;
 	this.votreConsigne = _votreConsigne;
-	this.commentaire = _commentaire;	
+	this.commentaire = _commentaire;
 }
-	
+
 	/* ----------------------------- */
-	
+
 objConsigne.prototype.afficherUne = function(){
-		
-// On les insère dans l'interface grâce à JQuery :
+
+// On les insère dans l'interface :
 	var soustitre = this.soustitre;
 	var auteur = this.auteur;
 	var votreConsigne = this.votreConsigne;
-	
-	$("#soustitre").html(soustitre);
-	$("#titre_exo").html(soustitre);
-	$("#auteur_exo").html(auteur);
-	$("#votreconsigne").html("<p>"+ votreConsigne +"</p>");
-		
-	// Option d'affichage du texte : zoom pour travailler sur un vidéo-projecteur
- 	$("input#zoom1").change(function(){
- 		
- 		if ($(this).is(":checked")){
-			var optionZoom = true;
-		}
-		else{
-			var optionZoom = false;
-		}
- 		
- 		if (optionZoom == true){
- 			$(".nozoom").toggleClass("zoom",true);
- 			$("#une").hide();
- 			$("#accordeons").accordion("resize");
- 		}
- 		else{
- 			$(".nozoom").toggleClass("zoom",false);
- 			$("#une").show();
- 		}
- 	});
+
+	document.getElementById("soustitre").innerHTML = soustitre;
+	document.getElementById("titre_exo").innerHTML = soustitre;
+	document.getElementById("auteur_exo").innerHTML = auteur;
+	document.getElementById("votreconsigne").innerHTML = "<p>" + votreConsigne + "</p>";
 
 	// On affiche ou masque des blocs :
-	$("#accueil").hide();
-	$("#bloc").hide();
+	document.getElementById("une").style.display = 'block';
+	document.getElementById("etape0").style.display = 'block';
 	
-	
-	$("div#une").show();
-	$("div#etape0").show();
+	// On déclenche l'affichage de la consigne
+	document.getElementById("zone_consigne").style.display = 'block';
+	document.getElementById("titre_consigne").style.color = 'black';
 }
-	
+
 	/* ----------------------------- */
-	
+
 objConsigne.prototype.info = function(){
-	$.Zebra_Dialog(this.votreConsigne, {'title':"Consigne"});	
+	alert(this.votreConsigne);
 }
 
 function interprete_commentaire(_com){
@@ -172,8 +151,8 @@ function interprete_commentaire(_com){
 objConsigne.prototype.afficherCommentaire = function(){
 	// On affiche le commentaire ?
 	if (this.commentaire.length > 0){
-		$("#commentaire").html("<h2>Remarque :</h2><p>" + interprete_commentaire(this.commentaire)  + "</p>");
-	}	
+		document.getElementById("commentaire").innerHTML = "<h2>Remarque :</h2><p>" + interprete_commentaire(this.commentaire)  + "</p>";
+	}
 }
 
 /* ****************************************************************** */
@@ -188,7 +167,7 @@ objConsigne.prototype.afficherCommentaire = function(){
 
 // Constructeur de la classe d'objet Exercice
 function objExercice(_essais, _maxEssais, _justes, _reponses, _mots, _solutions, _optionMot, _Exercice, _texteExercice, _solution, _finConsigne, _couleur, _jokers){
-	
+
 	this.essais = _essais;
 	this.maxEssais = _maxEssais;
 	this.justes = _justes;
@@ -203,12 +182,12 @@ function objExercice(_essais, _maxEssais, _justes, _reponses, _mots, _solutions,
 	this.couleur = _couleur;
 	this.jokers = _jokers;
 	this.clics = this.solutions + this.jokers;
-}	
-	
+}
+
 	/* ----------------------------- */
-	
+
 objExercice.prototype.initialise = function(_maxEssais, _mots, _solutions, _optionMot, _texteExercice, _solution, _jokers){
-	
+
 	this.essais = 0;
 	this.maxEssais = _maxEssais;
 	this.justes = 0;
@@ -223,35 +202,37 @@ objExercice.prototype.initialise = function(_maxEssais, _mots, _solutions, _opti
 	this.clics = this.solutions + this.jokers;
 	this.couleur = "black";
 }
-	
+
 	/* ----------------------------- */
 
 objExercice.prototype.prepare = function(){
-	 			
+
 	this.essais++; // On ajoute un essai
 	this.reponses = 0;
 	this.justes = 0;
 	this.clics = this.solutions + this.jokers;
-		
+
 	this.Exercice = this.afficheExercice( this.texteExercice );
-		
+
 	//this.finConsigne = "mots ou expressions";
-		
+
 }
-	
+
 	 /* ----------------------------- */
-	 
+
 objExercice.prototype.corrige = function(){
-	
-	var Exercice = this.afficheExercice(this.texteExercice);
+
+	var Exercice = this.afficheSolution(this.texteExercice);
 	// On affiche le texte formaté de l'exercice :
-	$("#solution").html(Exercice);		
-	// On colore en bleu les solutions :				
+	document.getElementById("solution").innerHTML = Exercice;
+	// On colore en bleu les solutions :
 	var solution = this.solution;
-	for(var i=0; i < this.solutions; i++){
-		$("#solution>p>span[id="+ solution[i] +"]").addClass("correction",true);
-	} // fin boucle for
+	for(let i=0; i < this.solutions; i++){
 		
+		
+		document.getElementById('s' + solution[i]).style.color = 'orange';
+	} // fin boucle for
+
 }
 
 	/* ----------------------------- */
@@ -260,28 +241,28 @@ objExercice.prototype.corrige = function(){
 objExercice.prototype.calculeScore = function(){
 	var score = (this.justes / this.solutions) * 100;
 	var pourcent = Math.round(score);
-	return pourcent;	
+	return pourcent;
 }
-	
-	/* ----------------------------- */		
+
+	/* ----------------------------- */
 
 objExercice.prototype.selectionneReponse = function(ID){
-	
+
 	this.reponses++;
 	var fin = 0; // fin des essais : oui = 7, non = 0
 	var succes = 0; // sur le mot ou groupe cliqué : oui = 1, non = 0
 	var encore = 0; // recommencer cet exercice, c-à-d nouvel essai : oui = 4, non = 0
-		
+
 	var indice = this.solution.contient(ID);
-	
-	if(indice != -1){ // Un entier >=0 si cet ID est une valeur 
+
+	if(indice != -1){ // Un entier >=0 si cet ID est une valeur
 						// stockée dans le tableau 'solution'
-			
+
 		// On informe :
 		var message = "Bonne réponse : ";
 		message = message + this.texteExercice[ID].replace(/#/," ") + " convient en effet.";
 		this.justes++;
-		succes = 1;			
+		succes = 1;
 	}
 	else{
 		// Mauvaise réponse :( :
@@ -289,7 +270,7 @@ objExercice.prototype.selectionneReponse = function(ID){
 		var message = "Mauvaise réponse : ";
 		message += this.texteExercice[ID].replace(/#/," ") + " ne convient pas.";
 	}
-	
+
 	if (this.justes == this.solutions){ // Fin possible de cette instance de l'exercice
 		var monScore = this.calculeScore();
 		if( monScore == 100 ){
@@ -297,11 +278,11 @@ objExercice.prototype.selectionneReponse = function(ID){
 			message += " Votre score est de 100 %.";
 			fin = 7;
 			var bilan = fin + succes + encore;
-			
-			$("#succes").show();
-						
+
+			document.getElementById("succes").style.display = 'block';
+
 			return bilan;
-			
+
 		}
 		else{
 			// Score imparfait : peut-on continuer ?
@@ -311,7 +292,7 @@ objExercice.prototype.selectionneReponse = function(ID){
 			}
 		}
 	}
-			
+
 	if (this.reponses == this.solutions + this.jokers){ // Fin de cette instance de l'exercice
 		var monScore = this.calculeScore();
 		if (monScore < 100){
@@ -320,10 +301,10 @@ objExercice.prototype.selectionneReponse = function(ID){
 		}
 		// Peut-on recommencer ?
 		if ( this.maxEssais > 0 ){ // Compteur d'essais actif
-			if( this.essais == this.maxEssais ){ 
+			if( this.essais == this.maxEssais ){
 				// On met fin à l'exercice en permettant d'afficher la solution.
 				encore = 0;
-				fin = 7;	
+				fin = 7;
 			}
 			else{
 				// Il reste des essais...
@@ -333,7 +314,7 @@ objExercice.prototype.selectionneReponse = function(ID){
 		}
 		else
 		{
-		// Pas de compteur...	
+		// Pas de compteur...
 			encore = 4;
 			fin = 0;
 		}
@@ -341,83 +322,89 @@ objExercice.prototype.selectionneReponse = function(ID){
 
 	var bilan = fin + succes + encore;
 	if (succes == 1){
-		
-		$("#succes").show();
+
+		document.getElementById("succes").style.display = 'block';
 	}else{
-		
-		$("#echec").show();
+
+		document.getElementById("echec").style.display = 'block';
 	}
-	
-	
-	return bilan;	
+
+
+	return bilan;
 }
 
 	/* ----------------------------- */
-		
-objExercice.prototype.cliquerSurUnite = function(id){ 
-		
+
+objExercice.prototype.cliquerSurUnite = function(id){
+
 	var couleur = "orange"; // par défaut... n'apparaîtra jamais !
-		
+
 	// On vérifie la validité de la réponse :
 	var bilan = this.selectionneReponse(id);
+	
 	switch(bilan){
-			
+
 		case 8:
 			// Fin de l'exercice après un succès :
 			// On empêche le clic sur la zone d'exercice...
-			$("#exercice>span").unbind("click");
+			for ( var i = 0 ; i < this.mots ; i++ ){
+			document.getElementById(i).removeEventListener("click", this.repere);
 			// Et on met un curseur de souris explicite :
-			$("#exercice>span").hover(function(){
-				$(this).css("cursor","wait");
+			document.getElementById(i).addEventListener('hover',function(){
+				this.style.cursor = "wait";
 			},
 			function(){
-				$(this).css("cursor","auto");
+				this.style.cursor = "auto";
 			});
+			}
 			// on peut afficher le bouton de Solution :
-			$("input#action1").val("Voir la solution");
-			$("input#action1").show();
+			document.getElementById("action1").style.display = 'inline';
 			// On masque l'info clics :
-			$("#clics").html(" ");
+			document.getElementById("clics").innerHTML =" ";
 			// Couleur à retourner
 			couleur = "#3c9";
 			break;
-			
+
 		case 7:
 			// Fin de l'exercice après un échec :
 			// On empêche le clic sur la zone d'exercice...
-			$("#exercice>span").unbind("click");
+			for ( var i = 0 ; i < this.mots ; i++ ){
+			document.getElementById(i).removeEventListener("click", this.repere);
 			// Et on met un curseur de souris explicite :
-			$("#exercice>span").hover(function(){
-				$(this).css("cursor","wait");
+			document.getElementById(i).addEventListener('hover',function(){
+				this.style.cursor = "wait";
 			},
 			function(){
-				$(this).css("cursor","auto");
+				this.style.cursor = "auto";
 			});
+			}
 			// on doit afficher le bouton de Solution :
-			$("input#action1").val("Voir la solution");
-			$("input#action1").show();
+			document.getElementById("action0").style.display = 'none';
+			document.getElementById("action1").style.display = 'inline';
 			// On masque l'info clics :
-			$("#clics").html(" ");
+			document.getElementById("clics").innerHTML = " ";
 			// Couleur à retourner
 			couleur = "red";
 			break;
-			
+
 		case 5:
 			// On peut recommencer après un succès :
 			// On empêche le clic sur la zone d'exercice...
-			$("#exercice>span").unbind("click");
+			for ( var i = 0 ; i < this.mots ; i++ ){
+			document.getElementById(i).removeEventListener("click", this.repere);
 			// Et on met un curseur de souris explicite :
-			$("#exercice>span").hover(function(){
-				$(this).css("cursor","wait");
+			document.getElementById(i).addEventListener('hover',function(){
+				this.style.cursor = "wait";
 			},
 			function(){
-				$(this).css("cursor","auto");
+				this.style.cursor = "auto";
 			});
+			}
 			// On doit afficher le bouton Recommencer :
-			$("input#action1").val("Recommencer");
-			$("input#action1").show();
+			document.getElementById("action2").style.display = 'inline';
+			document.getElementById("action1").style.display = 'none';
 			// On masque l'info clics :
-			$("#clics").html(" ");
+			document.getElementById("clics").innerHTML = " ";
 			// Couleur à retourner
 			couleur = "#3c9";
 			break;
@@ -425,23 +412,25 @@ objExercice.prototype.cliquerSurUnite = function(id){
 		case 4:
 			// On peut recommencer après un échec :
 			// On empêche le clic sur la zone d'exercice...
-			$("#exercice>span").unbind("click");
+			for ( var i = 0 ; i < this.mots ; i++ ){
+			document.getElementById(i).removeEventListener("click", this.repere);
 			// Et on met un curseur de souris explicite :
-			$("#exercice>span").hover(function(){
-				$(this).css("cursor","wait");
+			document.getElementById(i).addEventListener('hover',function(){
+				this.style.cursor = "wait";
 			},
 			function(){
-				$(this).css("cursor","auto");
+				this.style.cursor = "auto";
 			});
+			}
 			// on doit afficher le bouton Recommencer :
-			$("input#action1").val("Recommencer");
-			$("input#action1").show();
+			document.getElementById("action1").style.display = 'none';
+			document.getElementById("action2").style.display = 'inline';
 			// On masque l'info clics :
-			$("#clics").html(" ");
+			document.getElementById("clics").innerHTML = " ";
 			// Couleur à retourner
 			couleur = "red";
 			break;
-			
+
 		case 1:
 			// L'exercice continue après un succes
 			couleur = "#3c9";
@@ -452,9 +441,9 @@ objExercice.prototype.cliquerSurUnite = function(id){
 			else{
 				var infoclic = this.clics + " clics restants.";
 			}
-			$("#clics").html(infoclic);
+			document.getElementById("clics").innerHTML = infoclic;
 			break;
-						
+
 		case 0:
 		default:
 			// L'exercice continue après un échec
@@ -466,16 +455,16 @@ objExercice.prototype.cliquerSurUnite = function(id){
 			else{
 				var infoclic = this.clics + " clics restants.";
 			}
-			$("#clics").html(infoclic);
+			document.getElementById("clics").innerHTML = infoclic;
 		}
-	return couleur;	
+	return couleur;
 }
 
 	/* ----------------------------- */
 	/* Affichage de l'exercice       */
 
 objExercice.prototype.afficheExercice = function(tableau){
-	if(tableau.length > 0){		
+	if(tableau.length > 0){
 		var texte = tableau;
 		var afficheTexte = "<p>";
 		var reg = /^#/;
@@ -488,12 +477,38 @@ objExercice.prototype.afficheExercice = function(tableau){
 				}
 				else{
 					afficheTexte += trim(texte[i]).replace(reg,"<br />");
-				}	
+				}
 			}
 			else{
 				afficheTexte += " <span id=\"" + i + "\">" + trim(texte[i]) + "</span> ";
 			}
-					
+
+		} // fin boucle for
+		afficheTexte += "</p>";
+		return afficheTexte;
+	}
+}
+
+objExercice.prototype.afficheSolution = function(tableau){
+	if(tableau.length > 0){
+		var texte = tableau;
+		var afficheTexte = "<p>";
+		var reg = /^#/;
+		for(var i=0; i < texte.length; i++){
+			if(reg.test(trim(texte[i]))){
+				if(trim(texte[i]).length>1){
+				// Cas : un # commence la chaine
+					var fin_segment = trim(texte[i]).substring(1,this.length);
+					afficheTexte += "<br />" + "<span id='s"+i+"'>"+ fin_segment + "</span> ";
+				}
+				else{
+					afficheTexte += trim(texte[i]).replace(reg,"<br />");
+				}
+			}
+			else{
+				afficheTexte += " <span id=\"s" + i + "\">" + trim(texte[i]) + "</span> ";
+			}
+
 		} // fin boucle for
 		afficheTexte += "</p>";
 		return afficheTexte;
@@ -501,10 +516,3 @@ objExercice.prototype.afficheExercice = function(tableau){
 }
 
 /* ****************************************************************** */
-
-
-
-
-
-
-
