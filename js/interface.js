@@ -78,7 +78,41 @@ var cons = new objConsigne(soustitreDef, auteurDef, votreConsigneDef, commentair
 // On crée une instance de cet objet avec les valeurs par défaut
 var exo = new objExercice(essaisDef, maxEssaisDef, justesDef, reponsesDef, motsDef, solutionsDef, optionMotDef, ExerciceDef, texteExerciceDef, solutionDef, finConsigneDef, couleurDef, jokersDef);
 
-// On initialise le facteur de zoom
+// On charge les données de cet exercice dans le modèle d'interface à partir du fichier de données obtenu via la variable 'donnees'
+// Gestion du modèle (template)
+var template = document.getElementById('modele').innerHTML;
+
+
+// Appel effectif de la fonction du chargement des données
+// On récupère les données au format JSON
+
+	fetch(donnees)
+	.then(function(response) {
+	if (!response.ok) {
+		throw new Error("Erreur HTTP, status = " + response.status);
+       }
+       return response.json();
+     })
+     .then(function(json) {
+		 
+	var nouvel = document.createElement("div");
+	nouvel.innerHTML = template;
+	
+	cons.initialise(json.soustitre, json.auteur, json.votreConsigne, json.commentaire);
+  	exo.initialise(parseInt(json.maxEssais), parseInt(json.mots), parseInt(json.solutions), json.optionMot, json.texteExercice, json.solution, parseInt(json.jokers));
+	// On affiche la consigne :
+    cons.afficherUne(nouvel);
+
+	// On prépare l'exercice dans sa zone
+	exo.prepare();
+	nouvel.querySelector("#exercice").innerHTML = exo.Exercice;
+	// On masque le bouton recommencer
+	nouvel.querySelector('#action2').style.display = 'none';
+	
+	document.getElementById("conteneur").innerHTML = "";
+    document.getElementById("conteneur").appendChild(nouvel);
+    
+    // On initialise le facteur de zoom
 document.getElementById("zoom1").checked = false;
 
 // On masque les zones de bilan :
@@ -115,28 +149,7 @@ document.getElementById("echec").style.display = 'none';
 	});
 	} // Fin de la boucle for sur les titres
 	
-// Appel effectif de la fonction du chargement des données
-// On récupère les données au format JSON
 
-	fetch(donnees)
-	.then(function(response) {
-	if (!response.ok) {
-		throw new Error("HTTP error, status = " + response.status);
-       }
-       return response.json();
-     })
-     .then(function(json) {
-	cons.initialise(json.soustitre, json.auteur, json.votreConsigne, json.commentaire);
-  	exo.initialise(parseInt(json.maxEssais), parseInt(json.mots), parseInt(json.solutions), json.optionMot, json.texteExercice, json.solution, parseInt(json.jokers));
-	// On affiche la consigne :
-    cons.afficherUne();
-
-	// On prépare l'exercice dans sa zone
-	exo.prepare();
-	document.getElementById("exercice").innerHTML = exo.Exercice;
-	// On masque le bouton recommencer
-	document.getElementById('action2').style.display = 'none';
-   });
 
 	
 /* ***************************************************** */
@@ -331,4 +344,8 @@ document.getElementById("echec").style.display = 'none';
 
 /* ----------------------------- */
 }); /*Fin de la fonction principale */
+
+
+	
+}); /* Fin de la fonction fetch */
 

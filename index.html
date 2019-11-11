@@ -5,7 +5,9 @@
 		<meta charset="utf-8">
 		<title>Index des exercices de repérage</title>
 		
-		
+		<!-- CSS -->
+		<link href="css/degrade.css" rel="stylesheet" type="text/css" />
+		<link href="css/index.css" rel="stylesheet" type="text/css" />
 
 	</head>
 	
@@ -18,19 +20,38 @@
 		</div>
 	</header>
 	
-	<aside>
-		<div id="cadre_prof">
-			<div id="prof">&copy; Patrick Cardona</div>
-		</div>
-	</aside>
-	<section>
-		<div id="section_1">
-			<h2>Repérages en troisième</h2>
-    <ul>
-      <li><a href="./reperage.html?numero=31">Exemple 31</a></li>
-    </ul>
-    </div>
-      </section>
+	<div id="accordeons">
+    		
+    	<h3 id="titre_1">Exercices de repérage en troisième</h3>
+    	<div id="zone_1" class="degrade">
+		
+			<ul>
+				<li><a href="reperage.html?numero=31">Je repère des phrases simples</a></li>
+				
+			</ul>
+		
+ 		</div>
+ 		
+ 		<h3 id="titre_2">Exercices de repérage en cinquième</h3>
+    	<div id="zone_2" class="degrade">
+		
+			<ul>
+				<li><a href="reperage.html?numero=51">Je repère les compléments d'objet : COD ou COI</a></li>
+				<li><a href="reperage.html?numero=52">Je repère les verbes attributifs</a></li>
+				<li><a href="reperage.html?numero=53">Je repère les verbes d'action</a></li>
+			</ul>
+		
+ 		</div>
+      		
+	</div>
+	
+	
     
+      <footer>
+		
+			Exercices de repérage proposés par Patrick Cardona
+		
+	</footer>
+    <script src="js/accordeons.js"></script>
      </body>
 </html>

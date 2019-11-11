@@ -19,105 +19,99 @@
   </head>
   <body>
     
-    <!-- Ne modifiez rien ici !!! Utilisez le générateur de données generateur.html ! -->
-    
+<!-- Si Javascript n'est pas autorisé -->
+<noscript>
+
+<h1>Erreur !</h1>
 	
-		
-	<!-- Infos éditoriales -->
-	
-	
+<p>Votre navigateur ne prend pas en charge l'exécution de scripts. Veuillez autoriser 
+l'exécution de JavaScript ou employer un navigateur adapté.</p>
+
+</noscript>
+
+<div id="conteneur">Chargement des données de l'exercice de repérage... Veuillez patienter...</div>
+
+<template id="modele">
 	
 	<div id="une">
-		<div id="titre"><img src="img/reperage-mini.png" alt="logo Reperage" /></div>
+	    <div id="titre"><img src="img/reperage-mini.png" alt="logo Reperage" /></div>
 	    <div id="infos_editoriales">
-	    	<div id="soustitre">Ici votre sous-titre</div>
-		</div>
+	    	<div id="soustitre"></div>
+	    </div>
 	</div>
   	
-  	
-    		
-  	<div id="accordeons">
+    <div id="accordeons">
     		
     	<h3 id="titre_consigne">Consigne</h3>
     	<div id="zone_consigne" class="degrade">
-			<!-- Consigne -->    
-   			
-				<div id="votreconsigne" class="zoom">La consigne</div>
-			
-		</div>
+	<!-- Consigne -->    
+   	<div id="votreconsigne" class="zoom"></div>
+	</div>
     	
     	<h3 id="titre_exercice">Exercice</h3>
     	<div id="zone_exercice" class="degrade">
-			<!-- Corps de l'exercice -->    
-   			<div id="etape1"> 
-				<div id="clics"> </div>
-    		
-				<div id="exercice" class="zoom">Corps de l'exercice</div>
-    
-				<form>
-					<button id="action0">Commencer l'exercice</button> 
-					<button id="action1">Voir la solution</button>
-					<button id="action2" class="bad">Recommencer</button>
-				</form>
-   
-   		</div>
-   
-   		<!-- Solution -->    
-   		<div id="etape2">
-    		<h2>Solution de l'exercice</h2>
-    	
-    		<div id="solution" class="zoom">La solution</div>
-    		<div id="commentaire" class="zoom">Le commentaire</div>
-   
-   		</div>
-		</div>
-    		
-    	<h3 id="titre_options">Options</h3>
-    	<div id="zone_options" class="degrade">
-	    
-   		
-   		
-    		
-    		<!-- Etape 0 -->
-    		<div id="etape0">
-    	
-    		<div id="msg_initial"> </div>
-    	
-    		<form>
-    		<fieldset>
-    			<legend>Option d'affichage : </legend>
-    		
-    			<input type="checkbox" id="zoom1" />&nbsp; Adapter l'affichage pour un vidéo-projecteur.
-    		</fieldset>
-    		</form>
-    		</div>
-	</div>
-    <h3 id="titre_apropos">À propos &hellip;</h3>
-    	<div id="zone_apropos" class="degrade">
-    		<p><b>Titre de l'exercice : </b><span id="titre_exo"> </span></p>
-    		<p><b>Auteur de l'exercice : </b><span id="auteur_exo"> </span></p>
-    		<p><b>Licence : </b>Creative Commons By-Nc</p>
-    		
-    	</div>		
-    	
 	
-		
-	</div> <!-- Fin accordéons -->
-  
+	<!-- Corps de l'exercice -->    
+	<div id="etape1"> 
+	<div id="clics"></div>
+	<div id="exercice" class="zoom">Corps de l'exercice</div>
+    	<form>
+	  <button id="action0">Commencer l'exercice</button> 
+	  <button id="action1">Voir la solution</button>
+	  <button id="action2" class="bad">Recommencer</button>
+	</form>
+      </div>
+   
+   	<!-- Solution -->    
+   	<div id="etape2">
+	  <h2>Solution de l'exercice</h2>
+	  <div id="solution" class="zoom">La solution</div>
+	    <div id="commentaire" class="zoom">Le commentaire</div>
+	  </div>
+	</div>
+    		
+    	
+	<h3 id="titre_options">Options</h3>
+    	<div id="zone_options" class="degrade">
+	    		
+    	<!-- Etape 0 -->
+    	<div id="etape0">
+	  <div id="msg_initial"></div>
+	  <form>
+	    <fieldset>
+	    <legend>Option d'affichage : </legend>
+	    <input type="checkbox" id="zoom1" />&nbsp; Adapter l'affichage pour un vidéo-projecteur.
+	    </fieldset>
+	  </form>
+	</div>
+      </div>
     
-  <!-- Pied de page -->
-  <div id="pied">
-  Créé au moyen de <a href="#" title="apropos">Repérage</a> : © Patrick Cardona 
-  &nbsp; | <a href="#" title="licence" rel="jslicense">Licence</a>
-  </div>
+    
+      <h3 id="titre_apropos">À propos &hellip;</h3>
+      <div id="zone_apropos" class="degrade">
+	  <p><b>Titre de l'exercice : </b><span id="titre_exo"> </span></p>
+	  <p><b>Auteur de l'exercice : </b><span id="auteur_exo"> </span></p>
+	  <p><b>Licence : </b>Creative Commons By-Nc</p>
+      </div>		
+    	
+    </div> <!-- Fin accordéons -->
   
-  <div id="succes">
+   <!-- Pied de page -->
+    <div id="pied">
+      Créé au moyen de <a href="#" title="apropos">Repérage</a> : © Patrick Cardona 
+      &nbsp; | <a href="#" title="licence" rel="jslicense">Licence</a>
+    </div>
+  
+    <div id="succes">
   	<img src="img/face-smile.png" alt="Bravo !" width="128" height="128" />
-  </div>
+    </div>
   
-  <div id="echec">
+    <div id="echec">
   	<img src="img/face-sad.png" alt="Bravo !" width="128" height="128" />
-  </div>
+    </div>
+  
+<!-- Fin du modèle -->  
+</template>
   
     <!-- Scripts partagés -->
     <script src="lib/js/apropos.js"></script>

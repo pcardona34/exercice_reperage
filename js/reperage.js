@@ -113,25 +113,25 @@ objConsigne.prototype.initialise = function(_soustitre, _auteur, _votreConsigne,
 
 	/* ----------------------------- */
 
-objConsigne.prototype.afficherUne = function(){
+objConsigne.prototype.afficherUne = function(el){
 
 // On les insère dans l'interface :
 	var soustitre = this.soustitre;
 	var auteur = this.auteur;
 	var votreConsigne = this.votreConsigne;
 
-	document.getElementById("soustitre").innerHTML = soustitre;
-	document.getElementById("titre_exo").innerHTML = soustitre;
-	document.getElementById("auteur_exo").innerHTML = auteur;
-	document.getElementById("votreconsigne").innerHTML = "<p>" + votreConsigne + "</p>";
+	el.querySelector("#soustitre").innerHTML = soustitre;
+	el.querySelector("#titre_exo").innerHTML = soustitre;
+	el.querySelector("#auteur_exo").innerHTML = auteur;
+	el.querySelector("#votreconsigne").innerHTML = "<p>" + votreConsigne + "</p>";
 
 	// On affiche ou masque des blocs :
-	document.getElementById("une").style.display = 'block';
-	document.getElementById("etape0").style.display = 'block';
+	el.querySelector("#une").style.display = 'block';
+	el.querySelector("#etape0").style.display = 'block';
 	
 	// On déclenche l'affichage de la consigne
-	document.getElementById("zone_consigne").style.display = 'block';
-	document.getElementById("titre_consigne").style.color = 'black';
+	el.querySelector("#zone_consigne").style.display = 'block';
+	el.querySelector("#titre_consigne").style.color = 'black';
 }
 
 	/* ----------------------------- */
