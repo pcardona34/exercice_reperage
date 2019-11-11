@@ -1,3 +1,5 @@
+'use strict'
+
 /*
  * Script commun à JDicto, JMemor, etc. : accordeons.js
  *

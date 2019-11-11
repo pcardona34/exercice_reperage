@@ -1,22 +1,21 @@
-/* 
- * degrade.css
- * 
- * Feuille de style des menus en accordéon
- * ( c ) 2019 Patrick Cardona
+/*
+ * chargement.css
  *  
+ * ( c ) 2019 Patrick Cardona
+ * JEcho : exercice de réécriture de JDicto
  */
- 
+
 /* =================================================================== */
-/* LICENCE                                                             */
+/* LICENCE
 /* =================================================================== */
 /*
 @licstart  The following is the entire license notice for the 
     CSS code in this page.
 
-Copyright (C) 2012  Patrick CARDONA - Style des menus en accordéon
+Copyright (C) 2019 Patrick CARDONA - JEcho, exercice de Réécriture
 
     The CSS code in this page is free software: you can
-    redistribute it or modify it under the terms of the GNU
+    redistribute it and/or modify it under the terms of the GNU
     General Public License (GNU GPL) as published by the Free Software
     Foundation, either version 3 of the License, or (at your option)
     any later version.  The code is distributed WITHOUT ANY WARRANTY;
@@ -33,11 +32,8 @@ Copyright (C) 2012  Patrick CARDONA - Style des menus en accordéon
     for the CSS code in this page.    
 */
 
-
-h3[id^="titre"]{
-	background: linear-gradient(white, silver);
-}
-
-.degrade {
-	background: linear-gradient(lemonchiffon, khaki);
+.chargement {
+	text-align: center;
+	color: darkgray;
+	font-size: LARGE;
 }
