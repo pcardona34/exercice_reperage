@@ -1,0 +1,13 @@
+{
+"app_name":"Reperage",
+"soustitre":"Inconnu à cette adresse : premier portrait d'Hitler (1)",
+"auteur":"Patrick Cardona",
+"commentaire":"",
+"votreConsigne":"Repérez les opinions favorables à l'égard d'Hitler, voire l'expression d'une certaine fascination.",
+"texteExercice":["Je crois que, ","  à nombre d'égards, ","  Hitler est bon pour l'Allemagne, ","  mais ","  je n'en suis pas sûr ","  (...)  "," L'homme électrise littéralement les foules ;  "," il possède une force ","  que seul peut avoir un grand orateur ","  doublé d'un fanatique. ","  Mais ","  je m'interroge : ","  est-il complètement sain d'esprit ? ","  (...)  "," C'est à l'émergence d'une force vive ","  que nous assistons ","  (...)  "," On a trouvé ","  un Guide. ","  Pourtant, ","  prudent, ","  je me dis tout bas : ","  où cela va-t-il nous mener ?"],
+"solution":[1,2,6,7,8,14,18],
+"maxEssais":0,
+"jokers":0,
+"mots":23,
+"solutions":7
+}

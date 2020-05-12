@@ -1,0 +1,13 @@
+{
+"app_name":"Reperage",
+"soustitre":"Inconnu à cette adresse : premier portrait d'Hitler (3)",
+"auteur":"Patrick CARDONA",
+"commentaire":"",
+"votreConsigne":"Relevez les mots ou expressions qui expriment un doute chez Martin, ou une précaution, ainsi que les articulations logiques du texte qui soulignent l'opposition des idées.",
+"texteExercice":["Je crois que,"," à nombre d'égards,"," Hitler est bon pour l'Allemagne,"," mais"," je n'en suis pas sûr"," (...) ","L'homme électrise littéralement les foules ; ","il possède une force"," que seul peut avoir un grand orateur"," doublé d'un fanatique."," Mais"," je m'interroge :"," est-il complètement sain d'esprit ?"," (...) ","C'est à l'émergence d'une force vive"," que nous assistons"," (...) ","On a\ntrouvé"," un Guide."," Pourtant,"," prudent,"," je me dis tout bas :"," où cela va-t-il nous mener ?"],
+"solution":[0,3,4,10,11,19,20,22],
+"maxEssais":0,
+"jokers":0,
+"mots":23,
+"solutions":8
+}

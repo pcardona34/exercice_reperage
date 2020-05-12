@@ -1,0 +1,13 @@
+{
+"app_name":"Reperage",
+"soustitre":"Inconnu à cette adresse : procédés de l'antisémitisme",
+"auteur":"Patrick CARDONA",
+"commentaire":"",
+"votreConsigne":"Relevez les mots ou expressions qui relèvent de préjugés ou de clichés antisémites.",
+"texteExercice":["Tu seras avant tout ","un juif"," qui pleurniche sur son peuple."," Cela, je l'admets."," C'est conforme au caractère sémite."," Vous vous lamentez,"," mais"," vous n'êtes pas assez courageux"," pour vous battre en retour."," C'est pourquoi"," il y a des pogroms."],
+"solution":[1,2,4,5,7],
+"maxEssais":0,
+"jokers":0,
+"mots":11,
+"solutions":5
+}
